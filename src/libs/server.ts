@@ -272,7 +272,7 @@ export class MockoonServer extends (EventEmitter as new () => TypedEmitter<
           }/${declaredRoute.endpoint.replace(/ /g, '%20')}`;
           routePath = routePath.replace('//', '/');
 
-          let requestNumber = 1;
+          let requestNumber = 0;
 
           // create route
           server[declaredRoute.method](
@@ -296,7 +296,7 @@ export class MockoonServer extends (EventEmitter as new () => TypedEmitter<
                 currentRoute.responses,
                 request,
                 currentRoute.randomResponse,
-                false
+                currentRoute.sequentialResponse
               ).chooseResponse(requestNumber++);
 
               // save route and response UUIDs for logs (only in desktop app)
